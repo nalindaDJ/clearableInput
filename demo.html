@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Clearable Input Demo</title>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="jquery.clearableinput.js"></script>
+<link href="clearableinput.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> </head>
+<body>
+
+<h1>Clearable Input Demo</h1>
+
+<h2>Scenario 1: Group of items with attribute: "data-clrgrp" & class name: clearable-input</h2>
+
+<table>
+  <tr>
+    <td>Customer Name:</td>
+    <td><input id="customername" type="text" class="clearable-input" data-clrgrp="customer_data" placeholder="Enter customer name" /></td>
+  </tr>
+  <tr>
+    <td>Customer ID:</td>
+    <td><input id="customerid" type="hidden" data-clrgrp="customer_data" />Hidden Input</td>
+  </tr>
+  <tr>
+    <td>Customer Address:</td>
+    <td><textarea id="customeraddress" type="hidden" data-clrgrp="customer_data"></textarea></td>
+  </tr>
+</table>
+
+<script>
+$('input.clearable-input').clearableInput();
+</script>
+
+<h2>Scenario 2: User defined inputs</h2>
+
+<table>
+  <tr>
+    <td>Customer Name:</td>
+    <td><input id="customername2" type="text" class="clearable-input" placeholder="Enter customer name" /></td>
+  </tr>
+  <tr>
+    <td>Customer ID:</td>
+    <td><span id="customerid2" >10001</span></td>
+  </tr>
+</table>
+
+<script>
+$('#customername2').clearableInput({
+	clear_items: ['customername2', 'customerid2']
+});
+</script>
+
+</body>
+</html>
