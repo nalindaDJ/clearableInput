@@ -1,0 +1,25 @@
+# Node.js
+node_modules/
+
+# Dependency directories
+jspm_packages/
+
+# User-specific files
+.npmrc
+.npmignore
+.eslintcache
+.localstorage
+
+# Logs and databases
+logs/
+*.log
+*.sqlite
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

@@ -1,0 +1,16 @@
+.clearable-span {
+	position: relative;
+}
+.clearable-icon {
+	display: block;
+	cursor: pointer;
+	width: 20px !important;
+	position: absolute;
+	right: 0px;
+	top:-4px;
+	line-height: 19px;
+	background: rgb(225, 225, 225);
+	text-align: center;
+	height: 20px;
+	border-radius: 2px;
+}
