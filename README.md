@@ -35,7 +35,7 @@ Options
 - **clear_items (default: []):** An array of IDs representing additional inputs to be cleared along with the main input. Useful for clearing grouped input fields.
 
 ## Examples
-scenario 1: Group of items with attribute: "data-clrgrp" & class name: clearable-input
+Scenario 1: Group of items with attribute: "data-clrgrp" & class name: clearable-input
 ```html
     <input id="customername" type="text" class="clearable-input" data-clrgrp="customer_data" />
     <input id="customerid" type="hidden" data-clrgrp="customer_data" />
@@ -44,7 +44,10 @@ scenario 1: Group of items with attribute: "data-clrgrp" & class name: clearable
 ```javascript
     $('input.clearable-input').clearableInput();
 ```
-scenario 2: User defined inputs
+
+![Scenario 1](https://github.com/nalindaDJ/clearableInput/blob/main/s1.png?raw=true)
+
+Scenario 2: User defined inputs
 ```html
     <input id="customername" type="text" class="clearable-input"  />
     <input id="customerid" type="hidden"  />
@@ -55,6 +58,7 @@ scenario 2: User defined inputs
         clear_items: ['customername', 'customerid','customeraddress']
     });
 ```
+![Scenario 2](https://github.com/nalindaDJ/clearableInput/blob/main/s2.png?raw=true)
 
 ## Contributing
 
