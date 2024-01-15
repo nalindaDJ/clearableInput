@@ -1,5 +1,6 @@
 {
   "name": "clearableInput",
+  "title": "jQuery Clearable Input",
   "version": "1.0.0",
   "description": "A jQuery plugin for adding a clearable feature to input elements.",
   "main": "jquery.clearableinput.js",
@@ -8,13 +9,17 @@
     "url": "https://github.com/yourusername/clearableInput.git"
   },
   "keywords": ["jQuery", "plugin", "clearable", "input"],
-  "author": "Damith Nalinda jayasinghe",
-  "license": "MIT",
-  "dependencies": {
-    "jquery": "^3.5.1"
+  "author": {
+	  "name": "Damith Nalinda jayasinghe",
+	  "email": "damith.jayasinghe@gmail.com",
   },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "licenses": [
+	{
+		"type":	"MIT",
+		"url": "https://opensource.org/license/mit/",
+	}
+  ],
+  "dependencies": {
+    "jquery": ">=1.5"
   }
 }
