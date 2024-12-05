@@ -1,6 +1,6 @@
 /*
  * jQuery Clearable Input Plugin
- * Version: 1.0.0
+ * Version: 1.1.0
  *
  * Enhance user interaction with grouped input fields by adding a clear button for quick content removal.
  * Ideal for scenarios like customer details where multiple inputs (e.g., name, ID, address) are grouped.
@@ -10,69 +10,67 @@
  * @license: MIT
  * @repository: https://github.com/nalindaDJ/clearableInput
  */
-(function ( $ ) {
-
-    $.fn.clearableInput = function( options ) {
-
+(function ($) {
+    $.fn.clearableInput = function (options) {
         const settings = $.extend({
             selector: 'input.clearable-input',
             clear_items: []
         }, options);
 
+        // Helper function to clear an element's value or text
+        function clearElement($element) {
+            if ($element.is("input, textarea")) {
+                $element.val('');
+            } else {
+                $element.text('');
+            }
+        }
+
+        // Helper function to toggle the visibility of the clear icon
+        function toggleClearIcon($input, $clearIcon) {
+            const hasValue = $input.val().trim().length > 0;
+            $clearIcon.toggleClass('visible', hasValue);
+        }
+
         return this.each(function () {
-            let $clrInput = $(this);
+            const $clrInput = $(this);
+
+            // Wrap input with a container and add the clear icon
             $clrInput.wrap('<span class="clearable-span"></span>');
-            let $clearIcon = $('<div class="clearable-icon"><i class="fa fa-times"></i></div>');
+            const $clearIcon = $('<div class="clearable-icon"><span><i class="fa fa-times"></i></span></div>');
             $clrInput.after($clearIcon);
 
-            $clrInput.on('input click blur touchstart', function () {
+            // Handle input events to toggle the clear icon
+            $clrInput.on('input', function () {
                 toggleClearIcon($clrInput, $clearIcon);
             });
 
+            // Handle clear icon click event
             $clearIcon.on('click', function () {
-                if (settings.clear_items.length === 0) {
-                    clearInput($clrInput, $clearIcon);
-                } else {
-                    $clrInput.val('');
-                    $.each(settings.clear_items,function (key, ele){
-                        let $e = $('#'+ele);
-                        if($e.is("input")){
-                            $e.val('');
-                        }
-                        else if($e.is("textarea")){
-                            $e.val(' ');
-                        } else {
-                            $e.text('');
-                        }
+                // Clear the main input
+                clearElement($clrInput);
+
+                // Clear additional items if specified
+                if (settings.clear_items.length > 0) {
+                    $.each(settings.clear_items, function (_, ele) {
+                        clearElement($('#' + ele));
                     });
-                    toggleClearIcon($clrInput, $clearIcon);
-                }
-            });
-
-            toggleClearIcon($clrInput, $clearIcon);
-
-        });
-
-        function toggleClearIcon($input, $clearIcon) {
-            let hasValue = $input.val().trim().length;
-            $clearIcon.css('display', hasValue > 0 ? 'block' : 'none');
-            $clearIcon.css({'cursor':'pointer'});
-        }
-
-        function clearInput($input, $clearIcon) {
-            let groupId= $input.attr('data-clrgrp');
-            $("[data-clrgrp|='"+groupId+"']").each(function (){
-                if($(this).is("input")){
-                    $(this).val('');
-                } else if ($(this).is("textarea")) {
-                    $(this).val(' ');
                 } else {
-                    $(this).text('');
+                    // Clear grouped inputs if data-clrgrp attribute is present
+                    const groupId = $clrInput.attr('data-clrgrp');
+                    if (groupId) {
+                        $("[data-clrgrp='" + groupId + "']").each(function () {
+                            clearElement($(this));
+                        });
+                    }
                 }
+
+                // Toggle the clear icon visibility after clearing
+                toggleClearIcon($clrInput, $clearIcon);
             });
 
-            toggleClearIcon($input, $clearIcon);
-        }
+            // Initialize clear icon visibility
+            toggleClearIcon($clrInput, $clearIcon);
+        });
     };
-
-}( jQuery ));
+}(jQuery));
